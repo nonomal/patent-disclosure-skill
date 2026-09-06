@@ -56,6 +56,17 @@ EPUB_TITLE_NO_HIT = "无查询结果"
 FIELD_SELECTORS = {
     "class_code": ["#e51"],
     "title": ["#ti"],
+    "abstract": [
+        "#abs",
+        "input#abs",
+        "textarea#abs",
+        "#ab",
+        "input[name='ab']",
+        "input[name='abs']",
+        "input[name='catalogInfo.Ab']",
+        "textarea#ab",
+        "textarea[name='ab']",
+    ],
     "inventor": ["#e72"],
     "applicant": [
         "#e71_73",
@@ -68,6 +79,61 @@ FIELD_SELECTORS = {
     "application_number": ["#an", "#e21", "input[name='an']", "input[name='catalogInfo.An']"],
     "publication_number": ["#pn", "#e11", "input[name='pn']"],
 }
+FIELD_LABELS = {
+    "abstract": ["摘要/简要说明", "摘要", "简要说明"],
+    "title": ["名称"],
+    "class_code": ["分类号"],
+    "inventor": ["发明（设计）人", "发明人", "设计人"],
+    "applicant": ["申请（专利权）人", "申请人"],
+    "application_number": ["申请号"],
+    "publication_number": ["公布（公告）号", "公布号", "公告号"],
+}
+_FIND_FIELD_BY_LABEL_JS = """(needles) => {
+    const wanted = (needles || []).map((s) => String(s).replace(/\\s+/g, '')).filter(Boolean);
+    if (!wanted.length) return null;
+    const compact = (s) => String(s || '').replace(/\\s+/g, '');
+    const pick = (el) => {
+        if (!el) return null;
+        if (el.id) return '#' + el.id;
+        const name = el.getAttribute('name');
+        if (name && !/[\\s"'\\]]/.test(name)) {
+            const tag = (el.tagName || 'input').toLowerCase();
+            return tag + '[name="' + name + '"]';
+        }
+        return null;
+    };
+    const nodes = Array.from(document.querySelectorAll(
+        'label, dt, th, td, span, div, p, li, strong, b'
+    ));
+    for (const el of nodes) {
+        const text = compact(el.innerText || el.textContent || '');
+        if (!text || text.length > 24) continue;
+        if (!wanted.some((n) => text === n || text.startsWith(n))) continue;
+        const forId = el.getAttribute('for');
+        if (forId) {
+            const byFor = document.getElementById(forId);
+            const sel = pick(byFor);
+            if (sel) return sel;
+        }
+        const nested = el.querySelector('input[type="text"], input:not([type]), textarea');
+        const nestedSel = pick(nested);
+        if (nestedSel) return nestedSel;
+        const row = el.closest('tr, li, .form-item, .el-form-item, dd, div');
+        const inRow = row && row.querySelector('input[type="text"], input:not([type]), textarea');
+        const rowSel = pick(inRow);
+        if (rowSel) return rowSel;
+        let sib = el.nextElementSibling;
+        for (let i = 0; i < 4 && sib; i += 1) {
+            const hit = sib.matches && sib.matches('input, textarea')
+                ? sib
+                : sib.querySelector && sib.querySelector('input[type="text"], textarea');
+            const sibSel = pick(hit);
+            if (sibSel) return sibSel;
+            sib = sib.nextElementSibling;
+        }
+    }
+    return null;
+}"""
 
 _RESULT_PAGE_READY_JS = """(titles) => {
     const t = document.title.trim();
@@ -389,20 +455,38 @@ def apply_epub_advanced_catalog_filter(page: Page, catalog_id: str) -> None:
             )
 
 
+def _label_selector_for_field(page: Page, field: str) -> str | None:
+    needles = FIELD_LABELS.get(field) or []
+    if not needles:
+        return None
+    try:
+        found = page.evaluate(_FIND_FIELD_BY_LABEL_JS, needles)
+    except Error:
+        return None
+    return str(found).strip() if found else None
+
+
 def fill_advanced_field(page: Page, field: str, value: str | None) -> bool:
     text = (value or "").strip()
     if not text:
         return False
-    for selector in FIELD_SELECTORS.get(field, []):
+    selectors = list(FIELD_SELECTORS.get(field, []))
+    for selector in selectors:
         if page.query_selector(selector):
             page.fill(selector, text)
             return True
+    labeled = _label_selector_for_field(page, field)
+    if labeled and labeled not in selectors and page.query_selector(labeled):
+        page.fill(labeled, text)
+        return True
     return False
 
 
 def _adapt_advanced_fields(fields: dict[str, str]) -> dict[str, str]:
     adapted: dict[str, str] = {}
     for field, value in fields.items():
+        if field not in FIELD_SELECTORS:
+            continue
         text = (value or "").strip()
         if not text:
             continue

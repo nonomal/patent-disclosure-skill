@@ -1,7 +1,7 @@
 ---
 name: patent-disclosure-skill
 description: "中国专利技能：挖掘专利点与编写交底书（发明/实用/外观），把已有交底改写成申请文件四件套，按著录字段检索公布公告，通俗解读专利，对照审查口径出政策简报，辅助审查答复。| China patents skill: mine patent points and draft disclosures, rewrite an existing disclosure into Chinese application documents, search CNIPA bibliographic records, explain patents, brief examination-policy changes for disclosures, and assist office-action responses."
-version: "4.2.0"
+version: "4.3.0"
 user-invocable: true
 argument-hint: "[可选：项目路径 / 交底书 / 申请底稿 / 专利检索 / 专利号或 PDF / 政策简报 / 审查答复]"
 allowed-tools: Read, Write, Edit, Grep, Glob, WebSearch, Bash
@@ -15,7 +15,7 @@ allowed-tools: Read, Write, Edit, Grep, Glob, WebSearch, Bash
 |------|--------|----------|------|
 | **交底** | 挖专利点 → 查新 → 成稿 → 迭代 | 专利挖掘、交底书、查新、实用新型、外观设计；`/patent-disclosure`、`/交底书` | `skills/patent-disclosure/SKILL.md` |
 | **申请文件** | 已有交底 → 权要 / 说明书 / 摘要 / 附图 | **须显式**且**指定交底目录**：申请文件、申请底稿、申报材料、`/申请底稿`、`/patent-apply`。仅缺材料则终止；内容争议写入问题清单；交付末尾须摘要清单；改已有产出则另存 | `skills/patent-application/SKILL.md` |
-| **检索** | 公布站高级查询（发明人/申请人/分类号/名称等） | 按著录字段查公布公告、个人公开清单；`/patent-search`。普通多条件**不要**默认翻完全部分页 | `skills/patent-search/SKILL.md` |
+| **检索** | 公布站高级查询（发明人/申请人/分类号/名称/摘要等）；单图或权要可先抽关键字再查 | 按著录字段查公布公告、个人公开清单、以图/权要生成检索式；`/patent-search`。普通多条件**不要**默认翻完全部分页 | `skills/patent-search/SKILL.md` |
 | **解读** | 公开号 / PDF / 全文 → 通俗笔记 + 图谱 | 读专利、公开号或 PDF 且目标为理解；`/patent-read`、`/读专利` | `skills/patent-reader/SKILL.md` |
 | **审查答复** | 审查意见问答与草稿；库薄时引导入库/蒸馏 | **须显式**：审查意见、OA、案例入库、实务书、`/oa` | `skills/patent-oa/SKILL.md` |
 | **政策简报** | 对照国知局口径，说明对交底写法/本稿的影响；改技能仅为旁路 | **须显式**：政策简报、政策雷达、`/政策简报`、`/patent-brief`、`/patent-exam-policy`。「技能进化 / `/patent-evolve`」同一入口，仍先出简报 | `skills/patent-exam-policy/SKILL.md` |
