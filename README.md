@@ -2,7 +2,7 @@
 
 # 中国专利.skill
 
-> 专利点挖掘与交底书（发明/实用/外观）编写，已有交底改写成申请文件，公布公告著录检索，通俗解读专利，对照审查口径出政策简报，辅助审查答复。
+> 专利点挖掘与交底书（发明/实用/外观）编写，已有交底改写成申请文件，交底到申请可以一起做，公布公告著录检索，通俗解读专利，对照审查口径出政策简报，辅助审查答复。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/)
@@ -132,6 +132,13 @@
 <td nowrap width="1%"><a href="skills/patent-application/README.md">详情</a></td>
 </tr>
 <tr>
+<td nowrap width="1%"><a href="skills/patent-docket/README.md"><code>patent-docket</code></a></td>
+<td nowrap width="1%">案卷会稿</td>
+<td>工程师把材料丢进来，一趟写出交底书和申请文件；清单上的问题最多来回三轮，缺事实就问、不编，少跟代理人来回对稿</td>
+<td nowrap width="1%">「交底申请一起做」· 「从零出交底和申请」</td>
+<td nowrap width="1%"><a href="skills/patent-docket/README.md">详情</a></td>
+</tr>
+<tr>
 <td nowrap width="1%"><a href="skills/patent-reader/README.md"><code>patent-reader</code></a></td>
 <td nowrap width="1%">通俗解读</td>
 <td>公开号或 PDF 成通俗笔记、图谱与 Obsidian 入库</td>
@@ -187,7 +194,7 @@
 
 ## 参考文档
 
-- [技能入口与 Agent 流程](SKILL.md)（交底 / 申请文件 / 著录检索 / 解读 / 政策简报 / 审查答复）
+- [技能入口与 Agent 流程](SKILL.md)（交底 / 申请文件 / 案卷会稿 / 著录检索 / 解读 / 政策简报 / 审查答复）
 - [详细安装说明](INSTALL.md)
 - [Obsidian 安装与可选社区插件（Windows）](skills/patent-reader/docs/obsidian-setup-guide.md)
 

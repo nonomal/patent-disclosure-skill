@@ -54,6 +54,7 @@ git clone <本仓库 URL> "$env:USERPROFILE\.cursor\skills\patent-disclosure-ski
 
 - `skills/patent-disclosure/prompts/`（交底；含 `invention/`、`utility_model/`、`design/` 以及填表 / 线稿）
 - `skills/patent-application/prompts/`（申请文件四件套；须指定交底目录）
+- `skills/patent-docket/prompts/`（交底到申请一趟串起来；须显式）
 - `skills/patent-reader/prompts/`（通俗解读；含本包 `fill_*`）
 
 Cursor 也会扫描 **`~/.claude/skills/`**、项目内 **`.claude/skills/`** 等路径；详见 Cursor 官方文档与当前版本设置项。
@@ -165,6 +166,18 @@ python skills/patent-application/tools/emit_application_docx.py --dir outputs/pa
 ```
 
 缺材料时门禁退出码为 2，应先回到交底技能补齐。细则见 [skills/patent-application/SKILL.md](skills/patent-application/SKILL.md)。
+
+## 可选：案卷会稿（须显式）
+
+把交底书和申请文件串成一趟：按发明人/工程师给的材料成文，申请问题清单上的缺口最多改三轮。不另装依赖（根目录 `PyYAML`）。本包只记账和派工，正文仍由交底包、申请包来写；派工时读对方 `SKILL.md`，不要从这里调那些包的 `tools/`。缺技术事实就停下来问，不要编。
+
+```bash
+python skills/patent-docket/tools/init_docket.py --case-id {案件slug} --mode from_zero
+python skills/patent-docket/tools/validate_docket.py --yaml outputs/docket/{案件slug}/docket.yaml
+python skills/patent-docket/tools/emit_tracker.py --yaml outputs/docket/{案件slug}/docket.yaml
+```
+
+产物在 `outputs/docket/{案件}/`（`docket.yaml` + `TRACKER.md`），机读前缀 `DOCKET_DIR:` / `DOCKET_YAML:` / `DOCKET_OK:` / `DOCKET_ERROR:`。细则见 [skills/patent-docket/SKILL.md](skills/patent-docket/SKILL.md)。
 
 ## 可选：审查答复案例库（默认关闭）
 
