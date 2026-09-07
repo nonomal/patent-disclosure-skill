@@ -90,9 +90,10 @@
 
 - [ ] 文头 **专利类型：外观设计**
 - [ ] 设计要点可追溯 AppearanceSchema；只写可见造型/图案/色彩
-- [ ] 已判 `product_form` 并按 `claimed_faces` 定正投影（非默认六视）；`omitted_views` 已写或为 `[]`；要点落面缺源图才用 `uncertain`；入文视图与 `figure_plan` 一致
+- [ ] 已判 `product_form` 并按 `claimed_faces` 定正投影（非默认六视）；名称用官方全称（主视图、后视图、左视图、右视图、俯视图、仰视图、立体图）；`omitted_views` 已写或为 `[]`；要点落面缺源图才用 `uncertain`；入文视图与 `figure_plan` 一致
 - [ ] 入文多视/局部的 `relates_to` 已写（或可说明无需关联）；跨图造型无矛盾
-- [ ] 外观线稿已走 image_gen：存在 `design_lineart_brief`（或已有合格线稿故跳过生成）；干净实拍与线稿均已入 md 与 Word；CAD 未入文；实拍未标成 `kind: lineart`
+- [ ] 外观线稿已走 image_gen：存在 `design_lineart_brief`（或已有合格线稿且过 `design_view_cnipa.md` 故跳过生成）；未过 4.2 的已有线稿已重画，未走 `existing_lineart`；干净实拍与线稿均已入 md 与 Word；CAD 未入文；透视棚拍未当合格 `photo_clean`；实拍未标成 `kind: lineart`
+- [ ] 线稿为正投影（立体图角色正确）、各视比例一致、无尺寸线/中心线/阴影线；图题在图外正下方，图内无图号；画布对准 JPEG、不超过 150mm×220mm、72–300 DPI
 - [ ] `not_design_signals` 已处理（反问改类型或已从要点删除）
 - [ ] 未写内部电路、受力、工艺作为设计要点
 

@@ -7,7 +7,7 @@
 | `check_numeral_register.py` | `APPLICATION_NUMERALS:` | 0 无 ERROR；1 有 ERROR |
 | `render_invention_figures.py` | `APPLICATION_FIG:` | 0 已出 SVG；PNG 失败不单独当致命（看 png_fail） |
 | `check_support.py` | `APPLICATION_SUPPORT:` | 0 无 ERROR；1 有 ERROR |
-| `compose_application_figure.py` | `APPLICATION_FIG:` | 0 已出 SVG（PNG 看 png=） |
+| `compose_application_figure.py` | `APPLICATION_FIG:` | 0 已出 SVG（PNG 看 png=）；**仅实用新型 / 发明点名图**；外观禁用 |
 | `iteration_dialog_log.py` | `LOG_FILE=` | 0 已追加 |
 | `emit_application_docx.py` | `DOCX:` / `APPLICATION_DOCX:` | 0 全部写出 |
 

@@ -1,7 +1,7 @@
 ---
 name: patent-disclosure-skill
 description: "中国专利技能：挖掘专利点与编写交底书（发明/实用/外观），把已有交底改写成申请文件四件套，按著录字段检索公布公告，通俗解读专利，对照审查口径出政策简报，辅助审查答复。| China patents skill: mine patent points and draft disclosures, rewrite an existing disclosure into Chinese application documents, search CNIPA bibliographic records, explain patents, brief examination-policy changes for disclosures, and assist office-action responses."
-version: "4.3.0"
+version: "4.4.0"
 user-invocable: true
 argument-hint: "[可选：项目路径 / 交底书 / 申请底稿 / 专利检索 / 专利号或 PDF / 政策简报 / 审查答复]"
 allowed-tools: Read, Write, Edit, Grep, Glob, WebSearch, Bash

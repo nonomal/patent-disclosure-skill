@@ -13,7 +13,7 @@ user-invocable: false
 | Step 1 | `prompts/intake.md` |
 | Step 2 | `prompts/project_scan.md` |
 | Step 3–4 | `prompts/invention/` · `utility_model/` · `design/` 挖点 |
-| 填表 / 线稿 | `prompts/fill_*`、`image_gen.md`、`*_lineart_*.md` |
+| 填表 / 线稿 | `prompts/fill_*`、`image_gen.md`、`*_lineart_*.md`；外观视图口径 `references/design_view_cnipa.md` |
 | Step 5 | `prompts/prior_art_search.md`（轻量查新，一词一页） |
 | Step 6 | `prompts/disclosure_preview.md` |
 | Step 7 | 对应类型 `disclosure_builder.md` + `template_reference.md` |

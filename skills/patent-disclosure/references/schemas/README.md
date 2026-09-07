@@ -10,5 +10,5 @@
 | `structure_lineart_brief.schema.yaml` | 实用结构线稿描述（成文前必做） | 不问用户；轮廓与序号分层；禁止自创件号；CAD 不入文 |
 | `structure_lineart_compose.schema.yaml` | 实用结构线稿按件拼装 | 每件一个子 SVG，总图相对引用；粒度止于件号；crop / 单件图 / 占位框 |
 
-填写指令：`prompts/fill_structure_schema.md`、`fill_appearance_schema.md`（填表末步写出 **`figure_plan.yaml`**，含跨图核对与 `relates_to`）；线稿合同 **`prompts/image_gen.md`**；外观见 **`prompts/design_lineart_assist.md`**；实用新型见 **`prompts/structure_lineart_assist.md`** + **`structure_lineart_compose.md`**。  
+填写指令：`prompts/fill_structure_schema.md`、`fill_appearance_schema.md`（填表末步写出 **`figure_plan.yaml`**，含跨图核对与 `relates_to`）；线稿合同 **`prompts/image_gen.md`**；外观视图口径 **`references/design_view_cnipa.md`**（审查指南 4.2；交底打分与申请核查同一清单）；外观见 **`prompts/design_lineart_assist.md`**；实用新型见 **`prompts/structure_lineart_assist.md`** + **`structure_lineart_compose.md`**。  
 多轮改材料或主题时须同步重评 `figure_plan`（含 `relates_to`；见该合同「多轮同步」）。StructureSchema 可选 `relations[].seen_in` 标注连接可见于哪些 `fig`。
